@@ -2,6 +2,8 @@
 
 An interactive, visual study guide built around active recall.
 
+**Live guide:** https://k4birlabs.github.io/dr-recall-guide/
+
 ## What is inside
 
 - Interactive schematic fundus with stage selector and clickable lesions
