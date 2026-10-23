@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An interactive, active-recall guide to diabetic retinopathy: visual staging, 4-2-1 rule, DME vs PDR, management, flashcards, and quiz.">
+<title>Diabetic Retinopathy — Interactive Recall Guide</title>
+<meta name="theme-color" content="#0e1b19">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Retina Recall home">
+      <span class="brand-icon" aria-hidden="true"></span>
+      <span>Retina <em>Recall</em></span>
+    </a>
+    <nav class="nav-links" aria-label="Guide sections">
+      <a href="#model">Model</a>
+      <a href="#atlas">Atlas</a>
+      <a href="#stage">Staging</a>
+      <a href="#treat">Treat</a>
+      <a href="#screen">Screen</a>
+      <a href="#recall">Recall</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <div class="progress-pill" title="Sections covered">
+      <span class="progress-ring" id="progressRing"><span id="progressPct">0%</span></span>
+      <span class="progress-label">covered</span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Interactive ophthalmology · Active recall</p>
+        <h1>Diabetic <em>Retinopathy</em></h1>
+        <p class="lede">Stop memorizing a list of lesions. Learn the two forces that drive the disease — <strong>leak</strong> and <strong>grow</strong> — then test yourself until the staging and treatment logic feels obvious.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#atlas">Explore the retina</a>
+          <a class="btn btn-ghost" href="#recall">Start recall lab</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>5</strong><span>stages to recognize</span></div>
+          <div><strong>20</strong><span>recall cards</span></div>
+          <div><strong>10</strong><span>quiz questions</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <span class="orbit-label leak">LEAK <b>→ DME</b></span>
+        <span class="orbit-label grow">GROW <b>→ PDR</b></span>
+        <span class="orbit-label vegf">VEGF ↑</span>
+        <svg class="hero-retina" viewBox="0 0 560 560">
+          <defs>
+            <radialGradient id="heroRetina" cx="38%" cy="34%" r="78%">
+              <stop offset="0%" stop-color="#f7ac6e"/>
+              <stop offset="48%" stop-color="#d56a43"/>
+              <stop offset="100%" stop-color="#702329"/>
+            </radialGradient>
+            <radialGradient id="heroDisc" cx="42%" cy="38%" r="70%">
+              <stop offset="0%" stop-color="#ffe9b1"/>
+              <stop offset="70%" stop-color="#e8b965"/>
+              <stop offset="100%" stop-color="#bd7f36"/>
+            </radialGradient>
+            <filter id="heroGlow">
+              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <circle cx="280" cy="280" r="250" fill="#08110f" opacity=".6"/>
+          <circle cx="280" cy="280" r="235" fill="url(#heroRetina)"/>
+          <g fill="none" stroke-linecap="round">
+            <path d="M370 245 C 320 160 245 135 132 156" stroke="#681720" stroke-width="15"/>
+            <path d="M370 245 C 330 335 250 410 130 405" stroke="#681720" stroke-width="14"/>
+            <path d="M370 245 C 420 192 455 170 505 165" stroke="#681720" stroke-width="10"/>
+            <path d="M370 245 C 420 305 460 335 515 350" stroke="#681720" stroke-width="9"/>
+            <path d="M370 245 C 320 235 260 238 195 250" stroke="#681720" stroke-width="7"/>
+            <path d="M245 155 C 225 120 190 105 160 95" stroke="#681720" stroke-width="5"/>
+            <path d="M230 390 C 210 435 180 455 145 470" stroke="#681720" stroke-width="5"/>
+            <path d="M420 200 C 440 175 475 160 505 145" stroke="#681720" stroke-width="4"/>
+            <path d="M425 300 C 450 325 485 345 515 355" stroke="#681720" stroke-width="4"/>
+          </g>
+          <ellipse cx="370" cy="245" rx="40" ry="46" fill="url(#heroDisc)" stroke="#b87b34" stroke-width="2"/>
+          <ellipse cx="370" cy="245" rx="18" ry="23" fill="#d99a4b"/>
+          <circle cx="175" cy="280" r="40" fill="#7d1f24"/>
+          <circle cx="175" cy="280" r="12" fill="#4d1115"/>
+          <g fill="none" stroke="#ff5c78" stroke-width="2.5" filter="url(#heroGlow)" opacity=".95">
+            <path d="M395 210 C 405 195 420 190 432 180"/>
+            <path d="M395 210 C 410 220 418 232 435 235"/>
+            <path d="M395 210 C 398 198 392 185 395 173"/>
+          </g>
+          <circle cx="175" cy="280" r="68" fill="none" stroke="#4fd1c5" stroke-width="4" stroke-dasharray="8 8" opacity=".9"/>
+          <circle cx="280" cy="280" r="235" fill="none" stroke="#f8e8ce" stroke-opacity=".2" stroke-width="2"/>
+        </svg>
+        <span class="scanline"></span>
+        <span class="visual-note">Schematic, not a patient photo</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="model">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">01 · Foundations</p>
+          <h2>One disease.<br>Two ways to lose vision.</h2>
+        </div>
+        <p class="section-intro">Use this four-step mental model before you memorize any stage. If you can trace the pathway, the lesions and treatments start to make sense.</p>
+      </div>
+
+      <div class="pathway-toolbar">
+        <p class="microcopy">The mental model: metabolic injury → capillary damage → VEGF → leak or grow.</p>
+        <button class="btn btn-small btn-outline" id="pathToggle" type="button">Hide labels</button>
+      </div>
+
+      <div class="pathway" id="pathway">
+        <article class="path-card" tabindex="0" role="button" aria-label="Reveal step 1: metabolic stress">
+          <span class="path-num">01</span>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 6c8 9 13 15 13 22a13 13 0 1 1-26 0c0-7 5-13 13-22Z"/><path d="M18 35c1-6 5-10 10-12"/></svg>
+          </span>
+          <h3 class="path-title">Metabolic stress</h3>
+          <p class="path-copy">Chronic hyperglycemia activates AGEs, the polyol pathway, PKC, and oxidative stress. Capillaries take the hit.</p>
+          <span class="path-tag">Glucose → injury</span>
+          <span class="path-recall" aria-hidden="true">Recall</span>
+        </article>
+
+        <article class="path-card" tabindex="0" role="button" aria-label="Reveal step 2: capillary damage">
+          <span class="path-num">02</span>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 24h9c5 0 5-9 10-9s5 9 10 9h5"/><path d="M7 33h8c5 0 5-6 10-6s5 6 10 6h6"/><circle cx="24" cy="15" r="2.5"/><circle cx="24" cy="27" r="2.5"/></svg>
+          </span>
+          <h3 class="path-title">Capillary damage</h3>
+          <p class="path-copy">Pericyte loss and basement-membrane thickening cause occlusion (ischemia) and leakage (edema).</p>
+          <span class="path-tag">Ischemia + leak</span>
+          <span class="path-recall" aria-hidden="true">Recall</span>
+        </article>
+
+        <article class="path-card" tabindex="0" role="button" aria-label="Reveal step 3: VEGF upregulation">
+          <span class="path-num">03</span>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 35c8-2 10-9 16-9s8 7 16 9"/><path d="M24 26V8"/><path d="m17 15 7-7 7 7"/><circle cx="24" cy="36" r="3"/></svg>
+          </span>
+          <h3 class="path-title">VEGF rises</h3>
+          <p class="path-copy">Hypoxia upregulates vascular endothelial growth factor. VEGF increases permeability and drives new vessel growth.</p>
+          <span class="path-tag">Hypoxia → VEGF</span>
+          <span class="path-recall" aria-hidden="true">Recall</span>
+        </article>
+
+        <article class="path-card" tabindex="0" role="button" aria-label="Reveal step 4: leak or grow">
+          <span class="path-num">04</span>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 20h13c5 0 5-6 9-6h10"/><path d="M8 29h13c5 0 5 6 9 6h10"/><circle cx="9" cy="20" r="2.5"/><circle cx="9" cy="29" r="2.5"/><path d="m36 11 4 3-4 3M36 26l4 3-4 3"/></svg>
+          </span>
+          <h3 class="path-title">Leak or grow</h3>
+          <p class="path-copy">Leakage causes diabetic macular edema. Neovascularization causes proliferative disease and its complications.</p>
+          <span class="path-tag">DME or PDR</span>
+          <span class="path-recall" aria-hidden="true">Recall</span>
+        </article>
+      </div>
+
+      <div class="recall-callout">
+        <span class="recall-symbol" aria-hidden="true">↻</span>
+        <p><strong>Recall check:</strong> cover the labels and say the pathway out loud. <em>Glucose → capillary injury → ischemia → VEGF → leak or grow.</em> If you can do that, you can rebuild the rest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="atlas">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">02 · Visual atlas</p>
+          <h2>See the lesion.<br>Know what it means.</h2>
+        </div>
+        <p class="section-intro">Change the stage, then click the numbered pins. The macula is on the left; the optic disc is on the right. The image is schematic.</p>
+      </div>
+
+      <div class="atlas-card">
+        <div class="atlas-toolbar">
+          <div class="stage-tabs" role="group" aria-label="Choose diabetic retinopathy stage">
+            <button class="stage-tab" type="button" data-stage="normal" aria-pressed="false">Normal</button>
+            <button class="stage-tab" type="button" data-stage="mild" aria-pressed="false">Mild</button>
+            <button class="stage-tab active" type="button" data-stage="moderate" aria-pressed="true">Moderate</button>
+            <button class="stage-tab" type="button" data-stage="severe" aria-pressed="false">Severe</button>
+            <button class="stage-tab" type="button" data-stage="pdr" aria-pressed="false">PDR</button>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="dmeToggle">
+            <span class="switch-track"><span></span></span>
+            <span>DME overlay</span>
+          </label>
+        </div>
+
+        <div class="atlas-grid">
+          <div class="fundus-wrap stage-moderate" id="fundusWrap">
+            <svg id="fundusSvg" viewBox="0 0 680 680" role="group" aria-label="Interactive schematic fundus with numbered diabetic retinopathy findings">
+              <defs>
+                <radialGradient id="retinaBg" cx="38%" cy="36%" r="78%">
+                  <stop offset="0%" stop-color="#f6a868"/>
+                  <stop offset="45%" stop-color="#d96b43"/>
+                  <stop offset="100%" stop-color="#7c2328"/>
+                </radialGradient>
+                <radialGradient id="discGrad" cx="42%" cy="38%" r="65%">
+                  <stop offset="0%" stop-color="#ffe7a8"/>
+                  <stop offset="65%" stop-color="#efc06a"/>
+                  <stop offset="100%" stop-color="#c88a3d"/>
+                </radialGradient>
+                <radialGradient id="maculaGrad" cx="42%" cy="42%" r="65%">
+                  <stop offset="0%" stop-color="#551316"/>
+                  <stop offset="55%" stop-color="#7a1f23"/>
+                  <stop offset="100%" stop-color="#a63a32" stop-opacity=".3"/>
+                </radialGradient>
+                <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
+                <filter id="blur16"><feGaussianBlur stdDeviation="16"/></filter>
+                <filter id="glowRed"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <clipPath id="fundusClip"><circle cx="340" cy="340" r="292"/></clipPath>
+              </defs>
+
+              <circle cx="340" cy="340" r="300" fill="#08110f"/>
+              <circle cx="340" cy="340" r="292" fill="url(#retinaBg)"/>
+              <g clip-path="url(#fundusClip)">
+                <ellipse cx="250" cy="205" rx="190" ry="145" fill="#ffb36b" opacity=".10"/>
+                <ellipse cx="440" cy="475" rx="220" ry="170" fill="#5e141d" opacity=".16"/>
+
+                <g id="quadrantGuide" class="quadrant-guide">
+                  <line x1="340" y1="48" x2="340" y2="632" stroke="#f8e8ce" stroke-width="1.5" stroke-dasharray="4 9" opacity=".7"/>
+                  <line x1="48" y1="340" x2="632" y2="340" stroke="#f8e8ce" stroke-width="1.5" stroke-dasharray="4 9" opacity=".7"/>
+                  <text x="160" y="105" class="quadrant-text">1</text>
+                  <text x="500" y="105" class="quadrant-text">2</text>
+                  <text x="160" y="590" class="quadrant-text">3</text>
+                  <text x="500" y="590" class="quadrant-text">4</text>
+                </g>
+
+                <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M430 300 C 390 220 310 165 190 185" stroke="#6b1721" stroke-width="16"/>
+                  <path d="M430 300 C 395 380 315 470 190 465" stroke="#6b1721" stroke-width="15"/>
+                  <path d="M430 300 C 480 240 515 205 580 195" stroke="#6b1721" stroke-width="11"/>
+                  <path d="M430 300 C 480 365 520 400 585 420" stroke="#6b1721" stroke-width="10"/>
+                  <path d="M430 300 C 370 285 300 288 230 300" stroke="#6b1721" stroke-width="8"/>
+                  <path d="M300 195 C 275 155 250 130 225 110" stroke="#6b1721" stroke-width="5"/>
+                  <path d="M300 425 C 285 475 260 505 235 525" stroke="#6b1721" stroke-width="5"/>
+                  <path d="M500 215 C 515 190 540 170 560 150" stroke="#6b1721" stroke-width="4"/>
+                  <path d="M500 380 C 525 400 545 430 555 460" stroke="#6b1721" stroke-width="4"/>
+                  <path d="M245 188 C 225 175 205 172 185 176" stroke="#8f2830" stroke-width="6"/>
+                  <path d="M245 455 C 220 462 200 475 180 488" stroke="#8f2830" stroke-width="6"/>
+                  <path d="M390 185 C 380 155 390 130 405 110" stroke="#8f2830" stroke-width="4"/>
+                  <path d="M390 415 C 405 445 420 462 440 480" stroke="#8f2830" stroke-width="4"/>
+                  <path d="M430 300 C 390 220 310 165 190 185" stroke="#d66a58" stroke-width="3" opacity=".35"/>
+                  <path d="M430 300 C 395 380 315 470 190 465" stroke="#d66a58" stroke-width="3" opacity=".3"/>
+                </g>
+
+                <ellipse cx="430" cy="300" rx="48" ry="56" fill="url(#discGrad)" stroke="#b87832" stroke-width="2"/>
+                <ellipse cx="430" cy="300" rx="21" ry="27" fill="#d99a4b"/>
+
+                <circle cx="210" cy="330" r="49" fill="url(#maculaGrad)"/>
+                <circle cx="210" cy="330" r="13" fill="#4a0e12"/>
+                <circle cx="198" cy="318" r="5" fill="#d77a5f" opacity=".35"/>
+
+                <g id="vhHaze" class="vh-haze" filter="url(#blur16)" opacity=".48">
+                  <ellipse cx="395" cy="490" rx="155" ry="82" fill="#3f0a15"/>
+                  <ellipse cx="435" cy="510" rx="100" ry="55" fill="#5a0f1e"/>
+                </g>
+
+                <g class="lesion" data-id="microaneurysm" tabindex="0" role="button" aria-label="Microaneurysm">
+                  <circle cx="300" cy="245" r="6" fill="#ff4d4d"/>
+                  <circle cx="300" cy="245" r="11" fill="none" stroke="#ffb3a7" stroke-width="1.5" opacity=".7"/>
+                  <circle cx="300" cy="245" r="22" fill="transparent"/>
+                  <g class="pin" transform="translate(300 220)">
+                    <circle class="pin-ring" r="14"/>
+                    <circle class="pin-bg" r="11"/>
+                    <text class="pin-text" y=".5">1</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="hemorrhage" tabindex="0" role="button" aria-label="Dot and blot hemorrhages">
+                  <g fill="#9e1c2a">
+                    <circle cx="360" cy="395" r="7"/><circle cx="382" cy="410" r="9"/><circle cx="350" cy="420" r="6"/><circle cx="398" cy="392" r="5"/><circle cx="370" cy="425" r="5"/>
+                  </g>
+                  <circle cx="378" cy="410" r="34" fill="transparent"/>
+                  <g class="pin" transform="translate(400 438)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">2</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="exudate" tabindex="0" role="button" aria-label="Hard exudates">
+                  <g fill="#f6cf5b">
+                    <circle cx="252" cy="302" r="4"/><circle cx="266" cy="316" r="3.5"/><circle cx="248" cy="330" r="3"/><circle cx="270" cy="340" r="2.5"/><circle cx="238" cy="315" r="2"/>
+                  </g>
+                  <circle cx="256" cy="322" r="28" fill="transparent"/>
+                  <g class="pin" transform="translate(284 300)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">3</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="cotton" tabindex="0" role="button" aria-label="Cotton wool spot">
+                  <g fill="#fff4de" opacity=".9" filter="url(#blur3)">
+                    <ellipse cx="355" cy="170" rx="23" ry="12" transform="rotate(-20 355 170)"/>
+                    <ellipse cx="372" cy="181" rx="14" ry="8" transform="rotate(-10 372 181)"/>
+                  </g>
+                  <circle cx="360" cy="174" r="28" fill="transparent"/>
+                  <g class="pin" transform="translate(355 138)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">4</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="beading" tabindex="0" role="button" aria-label="Venous beading">
+                  <path d="M250 505 C 285 480 320 470 355 440" stroke="#6b1721" stroke-width="12" fill="none" stroke-linecap="round"/>
+                  <g fill="#b12a35">
+                    <circle cx="300" cy="478" r="9"/><circle cx="322" cy="462" r="7"/><circle cx="342" cy="450" r="10"/>
+                  </g>
+                  <circle cx="322" cy="465" r="32" fill="transparent"/>
+                  <g class="pin" transform="translate(315 510)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">5</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="irma" tabindex="0" role="button" aria-label="Intraretinal microvascular abnormality">
+                  <g fill="none" stroke="#ff6b5a" stroke-width="2.4" stroke-linecap="round" opacity=".95">
+                    <path d="M366 335 C 380 326 388 340 400 332"/>
+                    <path d="M370 344 C 382 352 392 340 404 348"/>
+                    <path d="M382 332 C 386 341 390 350 396 356"/>
+                  </g>
+                  <circle cx="385" cy="342" r="28" fill="transparent"/>
+                  <g class="pin" transform="translate(418 340)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">6</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="nvd" tabindex="0" role="button" aria-label="Neovascularization at the disc">
+                  <g fill="none" stroke="#ff4d6d" stroke-width="2" filter="url(#glowRed)" opacity=".95">
+                    <path d="M448 270 C 455 255 470 250 482 240"/>
+                    <path d="M448 270 C 462 280 470 292 486 294"/>
+                    <path d="M448 270 C 452 258 445 245 448 232"/>
+                    <path d="M448 270 C 460 262 470 264 480 255"/>
+                  </g>
+                  <circle cx="460" cy="265" r="30" fill="transparent"/>
+                  <g class="pin" transform="translate(490 258)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">7</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="nve" tabindex="0" role="button" aria-label="Neovascularization elsewhere">
+                  <g fill="none" stroke="#ff4d6d" stroke-width="1.8" filter="url(#glowRed)" opacity=".95">
+                    <path d="M255 155 C 265 140 280 138 290 126"/>
+                    <path d="M255 155 C 270 160 278 170 294 172"/>
+                    <path d="M255 155 C 258 145 252 132 256 120"/>
+                  </g>
+                  <circle cx="272" cy="148" r="28" fill="transparent"/>
+                  <g class="pin" transform="translate(302 136)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">8</text>
+                  </g>
+                </g>
+
+                <g class="lesion" data-id="vh" tabindex="0" role="button" aria-label="Vitreous hemorrhage">
+                  <circle cx="430" cy="470" r="34" fill="transparent"/>
+                  <g class="pin" transform="translate(470 466)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">9</text>
+                  </g>
+                </g>
+
+                <g class="lesion dme-overlay" data-id="dme" tabindex="-1" role="button" aria-label="Diabetic macular edema">
+                  <ellipse cx="210" cy="330" rx="92" ry="75" fill="none" stroke="#4fd1c5" stroke-width="4" stroke-dasharray="7 7" opacity=".95"/>
+                  <ellipse cx="210" cy="330" rx="70" ry="55" fill="#4fd1c5" opacity=".08"/>
+                  <circle cx="210" cy="330" r="98" fill="transparent"/>
+                  <g class="pin" transform="translate(125 286)">
+                    <circle class="pin-ring" r="14"/><circle class="pin-bg" r="11"/><text class="pin-text" y=".5">D</text>
+                  </g>
+                </g>
+              </g>
+              <circle cx="340" cy="340" r="300" fill="none" stroke="#f8e8ce" stroke-opacity=".22" stroke-width="2"/>
+            </svg>
+            <div class="fundus-caption" id="stageCaption">More than mild, less than severe.</div>
+          </div>
+
+          <aside class="lesion-panel" aria-live="polite">
+            <div id="lesionOverview">
+              <p class="panel-kicker" id="stageKicker">Stage 2 · Moderate NPDR</p>
+              <h3 id="stageTitle">Moderate NPDR</h3>
+              <p id="stageSummary">Hemorrhages, hard exudates, and cotton-wool spots may appear, but the 4-2-1 threshold is not met.</p>
+              <ul class="stage-points" id="stagePoints"></ul>
+              <div class="chip-label">Findings in this view</div>
+              <div class="lesion-chips" id="lesionChips"></div>
+              <p class="panel-hint" id="panelHint">Click a numbered pin or chip to inspect the lesion.</p>
+              <div class="dme-note" id="dmeNote" hidden>DME overlay on. Macular thickening can occur at any stage; OCT determines center involvement.</div>
+            </div>
+            <div id="lesionDetail" hidden>
+              <button class="back-btn" id="backToStage" type="button">← Back to stage</button>
+              <p class="panel-kicker" id="detailKicker"></p>
+              <h3 id="detailTitle"></h3>
+              <p id="detailWhat"></p>
+              <div class="detail-block"><span>Why it matters</span><p id="detailWhy"></p></div>
+              <div class="detail-block hook"><span>Memory hook</span><p id="detailHook"></p></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="recall-callout">
+        <span class="recall-symbol" aria-hidden="true">↻</span>
+        <p><strong>Recall check:</strong> before clicking a pin, name the lesion out loud. Then ask: does it leak, grow, or mark ischemia?</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="stage">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">03 · Staging</p>
+          <h2>The 4-2-1 rule,<br>without the fog.</h2>
+        </div>
+        <p class="section-intro">Check the criteria present. One criterion makes severe NPDR; two or more makes very severe NPDR. Both sit on the same high-risk spectrum.</p>
+      </div>
+
+      <div class="stage-grid">
+        <div class="rule-card">
+          <div class="rule-head">
+            <span class="rule-badge">4 · 2 · 1</span>
+            <h3>Build severe NPDR</h3>
+          </div>
+          <p class="microcopy">Select every 4-2-1 criterion you can find. The result updates live.</p>
+
+          <label class="rule-check">
+            <input type="checkbox" data-rule="h4">
+            <span class="fake-check" aria-hidden="true"></span>
+            <span class="rule-num">4</span>
+            <span class="rule-text"><strong>Quadrants of hemorrhage</strong><span>Diffuse hemorrhages / microaneurysms in all four quadrants</span></span>
+          </label>
+
+          <label class="rule-check">
+            <input type="checkbox" data-rule="vb2">
+            <span class="fake-check" aria-hidden="true"></span>
+            <span class="rule-num">2</span>
+            <span class="rule-text"><strong>Quadrants of venous beading</strong><span>Definite venous beading in two or more quadrants</span></span>
+          </label>
+
+          <label class="rule-check">
+            <input type="checkbox" data-rule="irma1">
+            <span class="fake-check" aria-hidden="true"></span>
+            <span class="rule-num">1</span>
+            <span class="rule-text"><strong>Quadrant of IRMA</strong><span>Prominent intraretinal microvascular abnormality in at least one quadrant</span></span>
+          </label>
+
+          <div class="rule-result" id="ruleResult" aria-live="polite">
+            <span class="rule-count" id="ruleCount">0 / 3</span>
+            <span class="rule-status" id="ruleStatus">Does not meet 4-2-1 severe criteria</span>
+          </div>
+          <div class="rule-meter" aria-hidden="true"><span id="ruleBar"></span></div>
+          <button class="btn btn-small btn-outline" id="ruleReset" type="button">Reset</button>
+        </div>
+
+        <div class="ladder-card">
+          <h3>The ladder, in one line each</h3>
+          <div class="ladder">
+            <div class="ladder-row"><span class="ladder-dot mild"></span><div><strong>Mild NPDR</strong><p>Microaneurysms only.</p></div></div>
+            <div class="ladder-row"><span class="ladder-dot moderate"></span><div><strong>Moderate NPDR</strong><p>More than mild, but not severe by 4-2-1.</p></div></div>
+            <div class="ladder-row"><span class="ladder-dot severe"></span><div><strong>Severe NPDR</strong><p>Any one 4-2-1 criterion.</p></div></div>
+            <div class="ladder-row"><span class="ladder-dot very"></span><div><strong>Very severe NPDR</strong><p>Two or more 4-2-1 criteria.</p></div></div>
+            <div class="ladder-row"><span class="ladder-dot pdr"></span><div><strong>PDR</strong><p>Neovascularization (NVD or NVE).</p></div></div>
+          </div>
+          <div class="trap-card">
+            <span class="trap-label">Exam trap</span>
+            <p>Cotton-wool spots are ischemic, but they are <strong>not</strong> one of the 4-2-1 criteria. DME can occur at any stage and is graded separately.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="recall-callout">
+        <span class="recall-symbol" aria-hidden="true">↻</span>
+        <p><strong>Recall check:</strong> which criterion is easiest to forget? <em>IRMA in one quadrant.</em> Which number makes a stage “very severe”? <em>Two criteria.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="treat">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">04 · Management</p>
+          <h2>Leak or grow?<br>Treat the driver.</h2>
+        </div>
+        <p class="section-intro">DME is a macular-leakage problem. PDR is a neovascular-growth problem. They can coexist, so always check the macula and the periphery.</p>
+      </div>
+
+      <div class="duo-grid">
+        <article class="driver-card leak">
+          <div class="driver-top">
+            <span class="driver-tag">Leak</span>
+            <span class="driver-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 6c8 10 13 16 13 23a13 13 0 1 1-26 0c0-7 5-13 13-23Z"/><path d="M18 34c1-6 4-9 9-11"/></svg>
+            </span>
+          </div>
+          <h3>DME</h3>
+          <p>Diabetic macular edema. Fluid and thickening in the macula cause blurred vision, reduced contrast, and metamorphopsia.</p>
+          <ul class="tick-list">
+            <li><strong>Key test:</strong> OCT to detect and quantify center involvement.</li>
+            <li><strong>Center-involving:</strong> anti-VEGF is first-line.</li>
+            <li><strong>Non-center:</strong> observe or focal/grid laser; individualize.</li>
+            <li><strong>Refractory:</strong> consider intravitreal steroid; treat systemic risk factors.</li>
+          </ul>
+          <div class="driver-hook">Hook: <strong>leaky macula → anti-VEGF.</strong></div>
+        </article>
+
+        <article class="driver-card grow">
+          <div class="driver-top">
+            <span class="driver-tag">Grow</span>
+            <span class="driver-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 40h24"/><path d="M24 40V22"/><path d="M24 22c-7 0-12-4-13-11 8-1 13 3 13 11Z"/><path d="M24 28c7 0 12-4 13-11-8-1-13 3-13 11Z"/></svg>
+            </span>
+          </div>
+          <h3>PDR</h3>
+          <p>Proliferative diabetic retinopathy. VEGF-driven new vessels are fragile and can bleed, fibrose, or cause traction.</p>
+          <ul class="tick-list">
+            <li><strong>Defining feature:</strong> neovascularization (NVD or NVE).</li>
+            <li><strong>High-risk PDR:</strong> PRP; anti-VEGF is an alternative.</li>
+            <li><strong>Vitreous hemorrhage:</strong> observe initially; vitrectomy if non-clearing.</li>
+            <li><strong>Tractional detachment:</strong> urgent retina referral for vitrectomy.</li>
+          </ul>
+          <div class="driver-hook">Hook: <strong>new vessels → PRP; blood or traction → vitrectomy.</strong></div>
+        </article>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-copy">
+          <p class="panel-kicker light">OCT decision</p>
+          <h3>Is the edema center-involving?</h3>
+          <p>This single question changes first-line therapy. Choose an OCT result and reveal the next step.</p>
+          <div class="decision-buttons">
+            <button class="decision-btn" type="button" data-dme="yes">Yes — center-involving</button>
+            <button class="decision-btn" type="button" data-dme="no">No — non-center</button>
+          </div>
+        </div>
+        <div class="decision-output" id="dmeOutput" aria-live="polite">
+          <span class="output-empty">Choose an OCT result to reveal the next step.</span>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <details class="case-card">
+          <summary>Case 1 · Blurred, distorted vision</summary>
+          <p>A 58-year-old with type 2 diabetes has 3 weeks of blurry, distorted vision. OCT shows central retinal thickening. What is the diagnosis and first-line treatment?</p>
+          <p class="case-answer"><strong>Center-involving DME → anti-VEGF.</strong> Also optimize glucose, blood pressure, and lipids.</p>
+        </details>
+        <details class="case-card">
+          <summary>Case 2 · Sudden floaters and vision loss</summary>
+          <p>A 34-year-old with type 1 diabetes reports sudden painless floaters and vision loss. The fundus view is obscured by blood. What complication is most likely?</p>
+          <p class="case-answer"><strong>Vitreous hemorrhage from PDR.</strong> Urgent retina referral; consider vitrectomy if the blood does not clear.</p>
+        </details>
+        <details class="case-card">
+          <summary>Case 3 · Four quadrants plus beading</summary>
+          <p>A 62-year-old has hemorrhages in all four quadrants and venous beading in two quadrants. There is no neovascularization. What stage is this?</p>
+          <p class="case-answer"><strong>Very severe NPDR</strong> — two 4-2-1 criteria, but still nonproliferative. Close retina follow-up and systemic optimization.</p>
+        </details>
+      </div>
+
+      <div class="recall-callout">
+        <span class="recall-symbol" aria-hidden="true">↻</span>
+        <p><strong>Recall check:</strong> why anti-VEGF for DME but PRP for high-risk PDR? <em>Anti-VEGF reduces permeability and growth; PRP ablates ischemic retina to lower VEGF drive.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="screen">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">05 · Screening</p>
+          <h2>Start the clock<br>at the right time.</h2>
+        </div>
+        <p class="section-intro">Duration is a major risk factor. The screening clock starts differently in type 1, type 2, and pregnancy — and follow-up tightens as disease worsens.</p>
+      </div>
+
+      <div class="screen-grid">
+        <article class="screen-card">
+          <span class="clock">+5</span>
+          <h3>Type 1</h3>
+          <p>Start screening <strong>5 years after diagnosis</strong>, then annually if no retinopathy.</p>
+        </article>
+        <article class="screen-card">
+          <span class="clock">0</span>
+          <h3>Type 2</h3>
+          <p>Screen <strong>at diagnosis</strong>, then annually if no retinopathy. The disease may have been present for years.</p>
+        </article>
+        <article class="screen-card">
+          <span class="clock">♀</span>
+          <h3>Pregnancy</h3>
+          <p>With pregestational diabetes, screen <strong>before conception or in the first trimester</strong>; monitor during pregnancy and recheck postpartum.</p>
+        </article>
+      </div>
+
+      <div class="followup-card">
+        <h3>Typical follow-up rhythm</h3>
+        <div class="followup-grid">
+          <div><span>No DR</span><strong>12 months</strong></div>
+          <div><span>Mild NPDR</span><strong>9–12 months</strong></div>
+          <div><span>Moderate NPDR</span><strong>6 months</strong></div>
+          <div><span>Severe / very severe</span><strong>3–4 months or sooner</strong></div>
+          <div><span>PDR / DME</span><strong>Retina specialist</strong></div>
+        </div>
+        <p class="fineprint">Typical intervals; individualize for pregnancy, rapid progression, poor follow-up, or systemic disease. Pediatric and adolescent screening timing may differ.</p>
+      </div>
+
+      <div class="risk-strip">
+        <div class="risk-intro">
+          <span class="section-index">Risk stack</span>
+          <h3>What accelerates the disease?</h3>
+        </div>
+        <div class="risk-chips">
+          <span>Hyperglycemia</span><span>Hypertension</span><span>Dyslipidemia</span><span>Smoking</span><span>Pregnancy</span><span>Nephropathy</span><span>Long duration</span>
+        </div>
+      </div>
+
+      <div class="red-flag">
+        <span class="red-flag-label">Red flags</span>
+        <p>Sudden vision loss · new floaters or flashes · visual field loss · rubeosis · vitreous hemorrhage · tractional detachment → urgent retina referral.</p>
+      </div>
+
+      <div class="recall-callout">
+        <span class="recall-symbol" aria-hidden="true">↻</span>
+        <p><strong>Recall check:</strong> “5, now, before.” Type 1 waits five years; type 2 screens now; pregnancy screens before conception or early.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="recall">
+    <div class="wrap">
+      <div class="recall-shell">
+        <div class="recall-head">
+          <div>
+            <p class="section-index light">06 · Recall lab</p>
+            <h2>Retrieval beats rereading.</h2>
+            <p>Answer before you flip. Rate honestly. The app schedules the next review in this browser so you spend time on what is still shaky.</p>
+          </div>
+          <div class="recall-stats">
+            <div><strong id="dueStat">20</strong><span>due now</span></div>
+            <div><strong id="learnedStat">0</strong><span>learned</span></div>
+          </div>
+        </div>
+
+        <div class="recall-controls">
+          <div class="filter-chips" role="group" aria-label="Filter flashcards by topic">
+            <button class="filter-chip active" type="button" data-topic="all">All</button>
+            <button class="filter-chip" type="button" data-topic="Staging">Staging</button>
+            <button class="filter-chip" type="button" data-topic="Pathology">Pathology</button>
+            <button class="filter-chip" type="button" data-topic="Treatment">Treatment</button>
+            <button class="filter-chip" type="button" data-topic="Screening">Screening</button>
+            <button class="filter-chip" type="button" data-topic="Exam">Exam</button>
+          </div>
+          <div class="recall-meta"><span id="deckMode">Due cards</span><button class="text-btn light" id="shuffleBtn" type="button">Shuffle</button></div>
+        </div>
+
+        <div class="flashcard-stage">
+          <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flashcard. Activate to reveal answer.">
+            <div class="flashcard-inner">
+              <div class="flashcard-face front">
+                <div class="card-meta"><span id="cardTopic">Staging</span><span id="cardCounter">1 / 20</span></div>
+                <p class="card-kicker">Prompt</p>
+                <h3 id="cardQuestion"></h3>
+                <p class="card-hint">Click or press Space to reveal · 1–4 to rate</p>
+              </div>
+              <div class="flashcard-face back">
+                <div class="card-meta"><span>Answer</span><span id="cardBackTopic">Staging</span></div>
+                <p class="card-answer" id="cardAnswer"></p>
+                <div class="card-hook"><span>Memory hook</span><p id="cardHook"></p></div>
+                <p class="card-hint">Rate your recall below</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="recall-complete" id="recallComplete" hidden>
+            <span class="complete-icon" aria-hidden="true">✓</span>
+            <h3>Deck cleared.</h3>
+            <p id="completeCopy">No cards are due right now.</p>
+            <button class="btn btn-small" id="reviewAgain" type="button">Practice all cards</button>
+          </div>
+        </div>
+
+        <div class="rating-row" id="ratingRow">
+          <button class="rating again" type="button" data-rating="again" disabled><span>Again</span><small>10 min</small></button>
+          <button class="rating hard" type="button" data-rating="hard" disabled><span>Hard</span><small>1 day</small></button>
+          <button class="rating good" type="button" data-rating="good" disabled><span>Good</span><small>3 days</small></button>
+          <button class="rating easy" type="button" data-rating="easy" disabled><span>Easy</span><small>7 days</small></button>
+        </div>
+
+        <div class="recall-footer">
+          <p>Ratings schedule the next review in this browser. Clearing site data resets the schedule.</p>
+          <button class="text-btn light" id="resetRecall" type="button">Reset recall data</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="quiz">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">07 · Check yourself</p>
+          <h2>Ten questions.<br>No highlighting.</h2>
+        </div>
+        <p class="section-intro">Pick an answer, read the explanation, then move on. Your best full-quiz score is saved locally.</p>
+      </div>
+
+      <div class="quiz-shell">
+        <div class="quiz-top">
+          <span id="quizProgress">Question 1 of 10</span>
+          <span id="quizBest">Best: —</span>
+        </div>
+        <div class="quiz-progress" aria-hidden="true"><span id="quizBar"></span></div>
+        <div id="quizBody"></div>
+        <div class="quiz-footer" id="quizFooter">
+          <span id="quizLive" aria-live="polite"></span>
+          <button class="btn btn-small" id="quizNext" type="button" disabled>Next question</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cheatsheet">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-index">08 · One-screen summary</p>
+          <h2>The memory<br>palace.</h2>
+        </div>
+        <p class="section-intro">If you remember only six things, remember these. Then use the teach-back prompt to prove you can reconstruct the rest.</p>
+      </div>
+
+      <div class="cheat-grid">
+        <article class="cheat-card">
+          <span class="cheat-symbol">1</span>
+          <h3>First lesion</h3>
+          <p>Microaneurysm. Mild NPDR = microaneurysms only.</p>
+        </article>
+        <article class="cheat-card">
+          <span class="cheat-symbol">2</span>
+          <h3>Two drivers</h3>
+          <p>Leak → DME. Grow → PDR. Both are VEGF-driven.</p>
+        </article>
+        <article class="cheat-card accent">
+          <span class="cheat-symbol">4·2·1</span>
+          <h3>Severe NPDR</h3>
+          <p>4 quadrants of hemorrhage, 2+ quadrants of venous beading, 1+ quadrant of IRMA. Any 1 = severe; ≥2 = very severe.</p>
+        </article>
+        <article class="cheat-card">
+          <span class="cheat-symbol">5 / 0</span>
+          <h3>Screening</h3>
+          <p>Type 1: +5 years. Type 2: at diagnosis. Pregnancy: before conception or first trimester.</p>
+        </article>
+        <article class="cheat-card">
+          <span class="cheat-symbol">OCT</span>
+          <h3>DME</h3>
+          <p>Center-involving → anti-VEGF first-line. Non-center → observe or focal laser; individualize.</p>
+        </article>
+        <article class="cheat-card">
+          <span class="cheat-symbol">PRP</span>
+          <h3>PDR</h3>
+          <p>High-risk PDR → PRP; anti-VEGF is an alternative. Vitrectomy for non-clearing vitreous hemorrhage or tractional detachment.</p>
+        </article>
+      </div>
+
+      <div class="teach-back">
+        <div>
+          <p class="section-index light">Final recall</p>
+          <h3>Teach it back in 30 seconds.</h3>
+          <p>Without looking: what is diabetic retinopathy, why does vision drop, and what are the two treatment targets?</p>
+        </div>
+        <details>
+          <summary>Reveal a model answer</summary>
+          <div>
+            <p>Diabetic retinopathy is microvascular damage from chronic hyperglycemia. Capillary occlusion causes retinal ischemia and raises VEGF; capillary leakage causes macular edema. Vision drops from DME, vitreous hemorrhage, tractional detachment, or neovascular glaucoma.</p>
+            <p>Treatment: optimize glucose, blood pressure, and lipids. Anti-VEGF for center-involving DME. PRP or anti-VEGF for PDR. Vitrectomy for non-clearing vitreous hemorrhage or tractional detachment.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand footer-brand" href="#top"><span class="brand-icon" aria-hidden="true"></span><span>Retina <em>Recall</em></span></a>
+      <p>An interactive study guide built around retrieval practice, not passive rereading.</p>
+    </div>
+    <div>
+      <p class="footer-label">Core sources</p>
+      <p>AAO Preferred Practice Pattern · ICO Guidelines · ETDRS · DRCR.net protocols. Core concepts only; verify local protocols.</p>
+    </div>
+    <div>
+      <p class="footer-label">Educational use</p>
+      <p>Not medical advice. Images are schematic, not patient photographs. This guide does not replace clinical judgment or local guidelines.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
